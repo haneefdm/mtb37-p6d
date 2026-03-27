@@ -10,61 +10,6 @@
             "args": [
                 "--norc",
                 "-c",
-                "make -j12 build_proj"
-            ],
-
-            "windows" : {
-                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
-                "args": [
-                    "--norc",
-                    "-c",
-                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe -j12 build_proj"
-                ]
-            },
-            "problemMatcher": "$gcc",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "Clean",
-            "type": "process",
-            "command": "bash",
-            "args": [
-                "--norc",
-                "-c",
-                "make clean_proj"
-            ],
-
-            "windows" : {
-                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
-                "args": [
-                    "--norc",
-                    "-c",
-                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe clean_proj"
-                ]
-            },
-            "group": {
-                "kind": "build"
-            }
-        },
-        {
-            "label": "Rebuild",
-            "dependsOrder": "sequence",
-            "dependsOn" : [ "Clean", "Build" ],
-            "group": {
-                "kind": "build"
-            }
-        },
-        {
-            "hide": true,
-            "label": "Build Application",
-            "type": "process",
-            "command": "bash",
-            "args": [
-                "--norc",
-                "-c",
                 "make -j12 build"
             ],
 
@@ -76,7 +21,41 @@
                     "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe -j12 build"
                 ]
             },
-            "problemMatcher": "$gcc"
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Rebuild",
+            "dependsOrder": "sequence",
+            "dependsOn" : [ "Clean", "Build" ],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Clean",
+            "type": "process",
+            "command": "bash",
+            "args": [
+                "--norc",
+                "-c",
+                "make clean"
+            ],
+
+            "windows" : {
+                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
+                "args": [
+                    "--norc",
+                    "-c",
+                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe clean"
+                ]
+            },
+            "group": {
+                "kind": "build"
+            }
         },
         {
             "label": "Program",
@@ -85,7 +64,7 @@
             "args": [
                 "--norc",
                 "-c",
-                "make -j12 program_proj"
+                "make -j12 program"
             ],
 
             "windows" : {
@@ -93,12 +72,52 @@
                 "args": [
                     "--norc",
                     "-c",
-                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe -j12 program_proj"
+                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe -j12 program"
                 ]
             },
             "problemMatcher": "$gcc",
             "group": {
                 "kind": "build"
+            }
+        },
+        {
+            "label": "Erase Device",
+            "type": "process",
+            "command": "bash",
+            "args": [
+                "--norc",
+                "-c",
+                "make -j12 erase"
+            ],
+
+            "windows" : {
+                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
+                "args": [
+                    "--norc",
+                    "-c",
+                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe -j12 erase"
+                ]
+            },
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Tool: Library Manager",
+            "type": "process",
+            "command": "bash",
+            "args": [
+                "--norc",
+                "-c",
+                "make modlibs MTB__JOB_BACKGROUND="
+            ],
+            "windows" : {
+                "command": "${config:modustoolbox.toolsPath}/modus-shell/bin/bash.exe",
+                "args": [
+                    "--norc",
+                    "-c",
+                    "export PATH=/bin:/usr/bin:$PATH ; ${config:modustoolbox.toolsPath}/modus-shell/bin/make.exe modlibs MTB__JOB_BACKGROUND="
+                ]
             }
         }
     ]
